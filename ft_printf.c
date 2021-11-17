@@ -52,7 +52,7 @@ int	ft_printf(const char *s, ...)
 			else if(s[i] == 'x')
 				ft_putnbr(va_arg(ptr, int), &l);
 			else if (s[i] == 'X')
-				ft_putnbr(va_arg(ptr, int), &l);
+				ft_print_hex(va_arg(ptr, int), &l);
 			else
 				ft_putchar(s[i], &l);
 		}
