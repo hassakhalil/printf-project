@@ -1,11 +1,12 @@
-#include "libft.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 int main ()
 {
-	int a = 12345;
+	int a = -1;
 	char s[] = "fucking hell";
 	char *ptr = s;
 
-	ft_printf("kkkkkk\n%d|\n%s|\nwkjedhkwjedhjw|\n%p|", a, s, ptr);
+	//printf("||-||this is return value%d\n||-||", ft_printf("%d\n", a));
+	printf("%u\n", a);
 }
