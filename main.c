@@ -7,6 +7,6 @@ int main ()
 	char s[] = "fucking hell";
 	char *ptr = s;
 
-	ft_printf("%X\n", a);
-	printf("%X\n", a);
+	ft_printf("%p\n", ptr);
+	printf("%p\n", ptr);
 }

@@ -6,6 +6,8 @@ void	ft_print_hex(int n,int *l)
 	int		tmp;
 
 	char *tab = malloc(11 *sizeof(char *));
+	if (!tab)
+		return ;
 	if (n < 0)
 	{
 		ft_putchar('-', l);

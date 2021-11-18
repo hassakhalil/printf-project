@@ -42,7 +42,10 @@ int	ft_printf(const char *s, ...)
 					ft_putstr("(null)", &l);
 			}
 			else if (s[i] == 'p')
-				ft_putstr(va_arg(ptr, void *), &l);
+			{
+				ft_putstr("0x", &l);
+				ft_putnbr(va_arg(ptr, int), &l);
+			}
 			else if (s[i] == 'd')
 				ft_putnbr(va_arg(ptr, int), &l);
 			else if (s[i] == 'i')
@@ -50,7 +53,9 @@ int	ft_printf(const char *s, ...)
 			else if (s[i] == 'u')
 				ft_putnbr(va_arg(ptr, int), &l);
 			else if(s[i] == 'x')
+			{
 				ft_putnbr(va_arg(ptr, int), &l);
+			}
 			else if (s[i] == 'X')
 				ft_print_hex(va_arg(ptr, int), &l);
 			else
