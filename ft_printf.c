@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_printf(const char *s, ...)
 {
@@ -44,7 +45,7 @@ int	ft_printf(const char *s, ...)
 			else if (s[i] == 'p')
 			{
 				ft_putstr("0x", &l);
-				ft_putnbr(va_arg(ptr, int), &l);
+				ft_print_hex(va_arg(ptr, int),"0123456789abcdef", &l);
 			}
 			else if (s[i] == 'd')
 				ft_putnbr(va_arg(ptr, int), &l);
@@ -54,10 +55,10 @@ int	ft_printf(const char *s, ...)
 				ft_putnbr(va_arg(ptr, int), &l);
 			else if(s[i] == 'x')
 			{
-				ft_putnbr(va_arg(ptr, int), &l);
+				ft_print_hex(va_arg(ptr,int),"0123456789abcdef", &l);
 			}
 			else if (s[i] == 'X')
-				ft_print_hex(va_arg(ptr, int), &l);
+				ft_print_hex(va_arg(ptr,int),"0123456789ABCDEF", &l);
 			else
 				ft_putchar(s[i], &l);
 		}

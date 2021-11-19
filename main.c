@@ -3,10 +3,9 @@
 
 int main ()
 {
-	int a = -1;
-	char s[] = "fucking hell";
-	char *ptr = s;
+	unsigned int a = -2;
+	//char *ptr = "hello worldo!";
 
-	ft_printf("%p\n", ptr);
-	printf("%p\n", ptr);
+	ft_printf("%x\n", a);
+	printf("%x\n", a);
 }

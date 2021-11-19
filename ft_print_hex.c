@@ -1,40 +1,12 @@
 #include "ft_printf.h"
 
-void	ft_print_hex(int n,int *l)
+void	ft_print_hex(int n, char* base, int *l)
 {
-	int 	i;
-	int		tmp;
+	unsigned int nb;
 
-	char *tab = malloc(11 *sizeof(char *));
-	if (!tab)
-		return ;
-	if (n < 0)
-	{
-		ft_putchar('-', l);
-		n = n * (-1);
-		l++;
-	}
-	tmp = 0;
-	i = 0;
-	while (n)
-	{
-		tmp = n % 16;
-		if (tmp < 10)
-		{
-			tab[i] = tmp + 48;
-			i++;
-		}
-		else
-		{
-			tab[i] = tmp + 55;
-			i++;
-		}
-		n = n / 16;
-	}
-	while(i >= 0)
-	{
-		ft_putchar(tab[i], l);
-		i--;
-	}
-	free(tab);
+	nb = n;
+	if (nb > 16)
+		ft_print_hex((nb/16), "0123456789abcdef", l);
+	write(1, &base[nb % 16], 1);
+	(*l)++;
 }
