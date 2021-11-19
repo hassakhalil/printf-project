@@ -1,6 +1,4 @@
-#include <stdarg.h>
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_printf(const char *s, ...)
 {
@@ -45,20 +43,20 @@ int	ft_printf(const char *s, ...)
 			else if (s[i] == 'p')
 			{
 				ft_putstr("0x", &l);
-				ft_print_hex(va_arg(ptr,unsigned int),"0123456789abcdef", &l);
+				ft_print_hex(va_arg(ptr,unsigned int),"0123456789abcdef", 16, &l);
 			}
 			else if (s[i] == 'd')
-				ft_putnbr(va_arg(ptr, int), &l);
+				ft_print_hex(va_arg(ptr, int), "0123456789", 10, &l);
 			else if (s[i] == 'i')
-				ft_putnbr(va_arg(ptr, int), &l);
+				ft_print_hex(va_arg(ptr, int), "0123456789", 10, &l);
 			else if (s[i] == 'u')
-				ft_putnbr(va_arg(ptr, int), &l);
+				ft_print_hex(va_arg(ptr, int), "0123456789", 10, &l);
 			else if(s[i] == 'x')
 			{
-				ft_print_hex(va_arg(ptr, int),"0123456789abcdef", &l);
+				ft_print_hex(va_arg(ptr, int),"0123456789abcdef", 16, &l);
 			}
 			else if (s[i] == 'X')
-				ft_print_hex(va_arg(ptr, int),"0123456789ABCDEF", &l);
+				ft_print_hex(va_arg(ptr, int),"0123456789ABCDEF", 16, &l);
 			else
 				ft_putchar(s[i], &l);
 		}

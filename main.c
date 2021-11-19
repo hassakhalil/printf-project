@@ -6,6 +6,7 @@ int main ()
 	//unsigned int a = 2147483647;
 	//char *ptr = "hello world!";
 
-	ft_printf("%u\n", -1);
-	printf("%u\n", -1);
+	int i = 015;
+	ft_printf("%d\n", i);
+	printf("%d\n", i);
 }
