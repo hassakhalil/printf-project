@@ -3,9 +3,9 @@
 
 int main ()
 {
-	unsigned int a = -1;
+	//unsigned int a = 2147483647;
 	//char *ptr = "hello world!";
 
-	ft_printf("%X\n", a);
-	printf("%X\n", a);
+	ft_printf("%u\n", -1);
+	printf("%u\n", -1);
 }

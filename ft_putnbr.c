@@ -1,15 +1,14 @@
 #include "ft_printf.h"
 
-void	ft_putnbr(int n, int *l)
+void	ft_putnbr(int x, int *l)
 {
 	char	c;
-	long	x;
 
-	x = n;
+	//x = n;
 	if (x < 0)
 	{
 		write(1, "-", 1);
-		x = x * (-1);
+		x = (long) x * (-1);
 		(*l)++;
 	}
 	if (x > 9)

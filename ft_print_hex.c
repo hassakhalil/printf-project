@@ -2,7 +2,7 @@
 
 void	ft_print_hex(int n, char* base, int *l)
 {
-	unsigned	int	nb;
+	unsigned int	nb;
 
 	nb = n;
 	if (nb >= 16)
