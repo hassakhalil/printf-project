@@ -7,6 +7,6 @@ int main ()
 	//char *ptr = "hello world!";
 
 	int i = 015;
-	ft_printf("%d\n", i);
+	//ft_printf("%d\n", i);
 	printf("%d\n", i);
 }
