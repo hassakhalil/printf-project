@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 02:05:10 by hkhalil           #+#    #+#             */
-/*   Updated: 2021/11/20 04:10:31 by hkhalil          ###   ########.fr       */
+/*   Created: 2021/11/20 03:17:48 by hkhalil           #+#    #+#             */
+/*   Updated: 2021/11/20 03:25:43 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
+#include "ft_printf.h"
 
-int		ft_printf(const char *s, ...);
-void	ft_putchar(char c, int *l);
-int		ft_putstr(char *s, int *l);
-void	ft_putnbr(int n, int *l);
-void	ft_print_base(unsigned long n, char *base, int size, int *l);
-#endif
+void	ft_putnbr(int n, int *l)
+{
+	char	c;
+	long	x;
+
+	x = n;
+	if (x < 0)
+	{
+		write(1, "-", 1);
+		(*l)++;
+		x = x * (-1);
+	}
+	if (x > 9)
+	{
+		ft_putnbr(x / 10, l);
+		ft_putnbr(x % 10, l);
+	}
+	else
+	{
+		c = x + '0';
+		write(1, &c, 1);
+		(*l)++;
+	}
+}
