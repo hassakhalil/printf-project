@@ -1,4 +1,46 @@
 #include "ft_printf.h"
+void	ft_printf_conversions(const char *s,va_list	ptr, int i,int *l)
+{
+	if (s[i] == 'c')
+		ft_putchar(va_arg(ptr, int), l);
+	else if (s[i] == 's')
+	{
+		if(!ft_putstr(va_arg(ptr, char *), l))
+			ft_putstr("(null)", l);
+	}
+	else if (s[i] == 'p')
+	{
+		ft_putstr("0x", l);
+		ft_print_base(va_arg(ptr,unsigned int),"0123456789abcdef", 16, l);
+	}
+	else if (s[i] == 'd' || s[i] == 'i' || s[i] == 'u')
+		ft_print_base(va_arg(ptr, int), "0123456789", 10, l);
+	else if(s[i] == 'x')
+		ft_print_base(va_arg(ptr, int),"0123456789abcdef", 16, l);
+	else if (s[i] == 'X')
+		ft_print_base(va_arg(ptr, int),"0123456789ABCDEF", 16, l);
+	else
+		ft_putchar(s[i], l);
+}
+
+int	ft_arguments_count(const char *s)
+{
+	int i = 0;
+	int n = 0;
+
+	if (s[i] == '%')
+	{
+		n++;
+		i++;
+	}
+	while (s[i])
+	{
+		if (s[i] == '%' && s[i - 1] != '%')
+			n++;
+		i++;
+	}
+	return n;
+}
 
 int	ft_printf(const char *s, ...)
 {
@@ -8,18 +50,7 @@ int	ft_printf(const char *s, ...)
 	int		l;
 
 	i = 0;
-	n = 0;
-	if (s[i] == '%')
-	{
-		n++;
-		i++;
-	}
-	while (s[i])
-	{
-		if (s[i] == '%' && s[i-1] != '%')
-			n++;
-		i++;
-	}
+	n = ft_arguments_count(s);
 	l = 0;
 	if (!n)
 	{
@@ -27,33 +58,10 @@ int	ft_printf(const char *s, ...)
 		return (l);
 	}
 	va_start(ptr, s);
-	i = 0;
 	while (s[i])
 	{
 		if (s[i] == '%')
-		{
-			i++;
-			if (s[i] == 'c')
-				ft_putchar(va_arg(ptr, int), &l);
-			else if (s[i] == 's')
-			{
-				if(!ft_putstr(va_arg(ptr, char *), &l))
-					ft_putstr("(null)", &l);
-			}
-			else if (s[i] == 'p')
-			{
-				ft_putstr("0x", &l);
-				ft_print_base(va_arg(ptr,unsigned int),"0123456789abcdef", 16, &l);
-			}
-			else if (s[i] == 'd' || s[i] == 'i' || s[i] == 'u')
-				ft_print_base(va_arg(ptr, int), "0123456789", 10, &l);
-			else if(s[i] == 'x')
-				ft_print_base(va_arg(ptr, int),"0123456789abcdef", 16, &l);
-			else if (s[i] == 'X')
-				ft_print_base(va_arg(ptr, int),"0123456789ABCDEF", 16, &l);
-			else
-				ft_putchar(s[i], &l);
-		}
+			ft_printf_conversions(s, ptr, ++i, &l);
 		else
 			ft_putchar(s[i], &l);
 		i++;
